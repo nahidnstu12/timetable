@@ -1,32 +1,24 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import useClock from './hooks/useClock';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const {clock: local} = useClock();  
+  const { clock: est } = useClock('EST');
+  const { clock: pst } = useClock('PST');
+  const { clock: pakistan } = useClock('UTC', 5*60);
+  const { clock: india } = useClock('UTC', 5.30*60);
+  const { clock: edt } = useClock('EDT');
+  
+  
+  console.log("Local Clock: ", local.date)
+  console.log("EST Clock: ", est.date)
+  console.log("PST Clock: ", pst.date)
+  console.log("Pakistan Clock: ", pakistan.date)
+  console.log("EDT Clock: ", edt.date)
+  console.log("India Clock: ", india.date)
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      
     </div>
   )
 }
